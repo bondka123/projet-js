@@ -1,0 +1,115 @@
+// 1. Reverse a String - Inverse une chaîne
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+
+// 2. Count Characters - Compte le nombre de caractères dans une chaîne
+function countCharacters(str) {
+    return str.length;
+}
+
+// 3. Capitalize Words - Met la première lettre de chaque mot en majuscule
+function capitalizeWords(sentence) {
+    return sentence.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+// Test
+console.log(reverseString("bonjour"));           // ruojnob
+console.log(countCharacters("bonjour tout le monde"));  // 20
+console.log(capitalizeWords("bonjour tout le monde"));  // Bonjour Tout Le Monde
+
+// 1. Find Maximum and Minimum in an Array
+
+function findMax(arr) {
+    if (arr.length === 0) return undefined;
+    let max = arr[0];
+    for (let num of arr) {
+        if (num > max) max = num;
+    }
+    return max;
+}
+
+function findMin(arr) {
+    if (arr.length === 0) return undefined;
+    let min = arr[0];
+    for (let num of arr) {
+        if (num < min) min = num;
+    }
+    return min;
+}
+
+// 2. Sum of Array Elements
+
+function sumArray(arr) {
+    let sum = 0;
+    for (let num of arr) {
+        sum += num;
+    }
+    return sum;
+}
+
+// 3. Filter Array Based on Condition
+// conditionFunc is a function that returns true or false for an element
+
+function filterArray(arr, conditionFunc) {
+    let result = [];
+    for (let elem of arr) {
+        if (conditionFunc(elem)) {
+            result.push(elem);
+        }
+    }
+    return result;
+}
+
+// --- Tests rapides ---
+
+const numbers = [5, 10, 3, 8, 2, 7];
+
+console.log("Max:", findMax(numbers));  // Max: 10
+console.log("Min:", findMin(numbers));  // Min: 2
+console.log("Sum:", sumArray(numbers)); // Sum: 35
+
+// Exemple de filtre : garder uniquement les nombres pairs
+const evenNumbers = filterArray(numbers, num => num % 2 === 0);
+console.log("Nombres pairs:", evenNumbers); // Nombres pairs: [10, 8, 2]
+
+// 1. Factorial: Calcul du factoriel d'un nombre n
+function factorial(n) {
+    if (n < 0) return undefined; // Factoriel non défini pour nombres négatifs
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+// 2. Prime Number Check: Vérifie si un nombre est premier
+function isPrime(num) {
+    if (num <= 1) return false;
+    if (num <= 3) return true;
+
+    if (num % 2 === 0 || num % 3 === 0) return false;
+
+    for (let i = 5; i * i <= num; i += 6) {
+        if (num % i === 0 || num % (i + 2) === 0) return false;
+    }
+    return true;
+}
+
+// 3. Fibonacci Sequence: Génère la suite de Fibonacci jusqu'à n termes
+function fibonacciSequence(n) {
+    if (n <= 0) return [];
+    if (n === 1) return [0];
+    let fib = [0, 1];
+    while (fib.length < n) {
+        let next = fib[fib.length - 1] + fib[fib.length - 2];
+        fib.push(next);
+    }
+    return fib;
+}
+
+// --- Tests rapides ---
+
+console.log("Factorial de 5:", factorial(5));           // 120
+console.log("Est-ce que 17 est premier ?", isPrime(17)); // true
+console.log("Suite Fibonacci (7 termes):", fibonacciSequence(7)); // [0,1,1,2,3,5,8]
